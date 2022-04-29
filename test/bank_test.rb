@@ -31,4 +31,33 @@ class BankTest < Minitest::Test
     credit_card = CreditCard.new("5541808923795240", 15000)
     assert_equal true, bank.valid_transaction?(11000, credit_card)
   end
+
+  def test_it_requires_credit_card_rb
+    assert './lib/credit_card'
+  end
+
+  def test_it_can_create_credit_card_class
+    credit_card = CreditCard.new("5541808923795240", 15000)
+    assert_instance_of CreditCard, credit_card
+  end
+
+  def test_it_can_access_card_number
+    credit_card = CreditCard.new("5541808923795240", 15000)
+    assert_equal "5541808923795240", credit_card.card_number
+  end
+
+  def test_it_can_access_limit
+    credit_card = CreditCard.new("5541808923795240", 15000)
+    assert_equal 15000, credit_card.limit
+  end
+
+  def test_it_can_provide_last_four
+    credit_card = CreditCard.new("5541808923795240", 15000)
+    assert_equal "5240", credit_card.last_four
+  end
+
+  def test_it_can_check_validity
+    credit_card = CreditCard.new("5541808923795240", 15000)
+    assert credit_card.is_valid?
+  end
 end
